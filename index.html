@@ -1,1 +1,923 @@
-file:///C:/Users/Guilherme%20Piccini/Downloads/index_1.html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agenda LPD3</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0f0f;
+    --surface: #1a1a1a;
+    --surface2: #232323;
+    --border: #2e2e2e;
+    --accent: #c9a84c;
+    --accent2: #e8c97a;
+    --text: #f0ede8;
+    --text2: #9a9690;
+    --text3: #5a5753;
+    --red: #e05252;
+    --green: #52b788;
+    --blue: #5299e0;
+    --radius: 10px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+
+  .logo span { color: var(--text2); font-size: 13px; font-family: 'DM Sans', sans-serif; margin-left: 10px; font-weight: 300; }
+
+  nav { display: flex; gap: 4px; }
+
+  nav button {
+    background: none;
+    border: none;
+    color: var(--text2);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.15s;
+  }
+
+  nav button:hover { background: var(--surface2); color: var(--text); }
+  nav button.active { background: var(--surface2); color: var(--accent); }
+
+  /* MAIN */
+  main { padding: 32px; max-width: 1200px; margin: 0 auto; }
+
+  /* SECTIONS */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* PAGE TITLES */
+  .page-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .page-sub { color: var(--text2); font-size: 13px; margin-bottom: 28px; }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+
+  .card-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 18px;
+  }
+
+  /* FORM */
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-grid.three { grid-template-columns: 1fr 1fr 1fr; }
+  .form-full { grid-column: 1 / -1; }
+
+  .field { display: flex; flex-direction: column; gap: 6px; }
+
+  label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text2);
+    letter-spacing: 0.03em;
+  }
+
+  input, select, textarea {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    padding: 10px 12px;
+    outline: none;
+    transition: border-color 0.15s;
+    width: 100%;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--accent);
+  }
+
+  select option { background: var(--surface2); }
+
+  textarea { resize: vertical; min-height: 80px; }
+
+  /* BUTTONS */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.15s;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #0f0f0f;
+  }
+  .btn-primary:hover { background: var(--accent2); }
+
+  .btn-ghost {
+    background: var(--surface2);
+    color: var(--text2);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover { color: var(--text); border-color: var(--text3); }
+
+  .btn-danger {
+    background: transparent;
+    color: var(--red);
+    border: 1px solid var(--red);
+  }
+  .btn-danger:hover { background: var(--red); color: white; }
+
+  /* CONFLICT WARNING */
+  #conflictWarning {
+    display: none;
+    background: rgba(224, 82, 82, 0.1);
+    border: 1px solid var(--red);
+    border-radius: 6px;
+    padding: 12px 16px;
+    color: var(--red);
+    font-size: 13px;
+    margin-top: 8px;
+  }
+
+  /* DASHBOARD METRICS */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .metric-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+
+  .metric-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 10px;
+  }
+
+  .metric-value {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .metric-value.accent { color: var(--accent); }
+  .metric-value.green { color: var(--green); }
+  .metric-value.red { color: var(--red); }
+
+  /* TABLE */
+  .table-wrap { overflow-x: auto; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text3);
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    font-size: 13px;
+    vertical-align: middle;
+  }
+
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--surface2); }
+
+  /* BADGE */
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  .badge-agendada { background: rgba(82, 153, 224, 0.15); color: var(--blue); }
+  .badge-realizada { background: rgba(82, 183, 136, 0.15); color: var(--green); }
+  .badge-noshow { background: rgba(224, 82, 82, 0.15); color: var(--red); }
+  .badge-cancelada { background: rgba(90, 87, 83, 0.3); color: var(--text3); }
+
+  /* CLOSER FILTER */
+  .closer-filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .closer-filter-btn {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    color: var(--text2);
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.15s;
+  }
+
+  .closer-filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .closer-filter-btn.active { background: var(--accent); color: #0f0f0f; border-color: var(--accent); }
+
+  /* AGENDA VISUAL */
+  .agenda-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+  }
+
+  .agenda-closer-col {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .agenda-closer-header {
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    padding: 12px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--accent);
+  }
+
+  .agenda-slot {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: default;
+  }
+
+  .agenda-slot:last-child { border-bottom: none; }
+
+  .slot-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .slot-free .slot-dot { background: var(--green); }
+  .slot-busy .slot-dot { background: var(--red); }
+  .slot-free { color: var(--text2); }
+  .slot-busy { color: var(--text3); }
+
+  .slot-name { font-size: 10px; color: var(--text3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  /* DATE SELECTOR */
+  .date-nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .date-nav button {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+  }
+
+  .date-nav button:hover { border-color: var(--accent); color: var(--accent); }
+
+  .date-display {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--text);
+  }
+
+  /* STATUS SELECT */
+  .status-select {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    padding: 4px 8px;
+    cursor: pointer;
+  }
+
+  /* TOAST */
+  #toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--green);
+    color: #0f0f0f;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 13px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s;
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  #toast.show { opacity: 1; transform: translateY(0); }
+
+  /* EMPTY STATE */
+  .empty {
+    text-align: center;
+    padding: 48px;
+    color: var(--text3);
+  }
+
+  .empty-icon { font-size: 32px; margin-bottom: 12px; }
+
+  /* MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    width: 460px;
+    max-width: 95vw;
+  }
+
+  .modal-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    margin-bottom: 18px;
+  }
+
+  .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
+
+  hr.divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+  .form-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">LPD3 <span>Sistema de Agendamento</span></div>
+  <nav>
+    <button class="active" onclick="showSection('agendar')">Novo Agendamento</button>
+    <button onclick="showSection('agenda')">Agenda Visual</button>
+    <button onclick="showSection('dashboard')">Dashboard</button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- AGENDAR -->
+  <section id="sec-agendar" class="section active">
+    <div class="page-title">Novo Agendamento</div>
+    <div class="page-sub">Preencha os dados para agendar uma reunião com o lead</div>
+
+    <div class="card">
+      <div class="card-title">Dados do Lead</div>
+      <div class="form-grid">
+        <div class="field">
+          <label>Nome do Lead *</label>
+          <input type="text" id="leadNome" placeholder="Nome completo">
+        </div>
+        <div class="field">
+          <label>Telefone / WhatsApp *</label>
+          <input type="text" id="leadTel" placeholder="(51) 99999-9999">
+        </div>
+        <div class="field">
+          <label>E-mail</label>
+          <input type="email" id="leadEmail" placeholder="email@exemplo.com">
+        </div>
+        <div class="field">
+          <label>Origem do Lead</label>
+          <select id="leadOrigem">
+            <option value="">Selecione...</option>
+            <option>Instagram</option>
+            <option>Facebook</option>
+            <option>Google</option>
+            <option>Indicação</option>
+            <option>WhatsApp</option>
+            <option>Outro</option>
+          </select>
+        </div>
+        <div class="field form-full">
+          <label>Observações</label>
+          <textarea id="leadObs" placeholder="Informações relevantes sobre o lead, situação trabalhista, etc."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Dados da Reunião</div>
+      <div class="form-grid three">
+        <div class="field">
+          <label>Closer Responsável *</label>
+          <select id="reuniaoCloser" onchange="verificarConflito()">
+            <option value="">Selecione...</option>
+            <option>Guilherme</option>
+            <option>Cinara</option>
+            <option>Emmanuel</option>
+            <option>Erina</option>
+            <option>Andreia</option>
+            <option>Mariana</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Data *</label>
+          <input type="date" id="reuniaoData" onchange="verificarConflito()">
+        </div>
+        <div class="field">
+          <label>Horário *</label>
+          <select id="reuniaoHorario" onchange="verificarConflito()">
+            <option value="">Selecione...</option>
+            <option>08:00</option><option>08:30</option>
+            <option>09:00</option><option>09:30</option>
+            <option>10:00</option><option>10:30</option>
+            <option>11:00</option><option>11:30</option>
+            <option>12:00</option><option>12:30</option>
+            <option>13:00</option><option>13:30</option>
+            <option>14:00</option><option>14:30</option>
+            <option>15:00</option><option>15:30</option>
+            <option>16:00</option><option>16:30</option>
+            <option>17:00</option><option>17:30</option>
+            <option>18:00</option><option>18:30</option>
+            <option>19:00</option><option>19:30</option>
+            <option>20:00</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>SDR Responsável</label>
+          <select id="reuniaoSDR">
+            <option value="">Selecione...</option>
+            <option>Antony</option>
+            <option>Tiago</option>
+            <option>Denilson</option>
+            <option>Erina</option>
+            <option>Andreia</option>
+            <option>Lilia</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Modalidade</label>
+          <select id="reuniaoModalidade">
+            <option>Videochamada</option>
+            <option>Presencial</option>
+            <option>Telefone</option>
+          </select>
+        </div>
+      </div>
+      <div id="conflictWarning">⚠️ Conflito de horário! Este closer já tem uma reunião nesse horário.</div>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn btn-ghost" onclick="limparFormulario()">Limpar</button>
+      <button class="btn btn-primary" onclick="confirmarAgendamento()">✓ Confirmar Agendamento</button>
+    </div>
+  </section>
+
+  <!-- AGENDA VISUAL -->
+  <section id="sec-agenda" class="section">
+    <div class="page-title">Agenda Visual</div>
+    <div class="page-sub">Visualize os horários livres e ocupados por closer</div>
+
+    <div class="date-nav">
+      <button onclick="mudarDia(-1)">‹</button>
+      <div class="date-display" id="dataDisplay"></div>
+      <button onclick="mudarDia(1)">›</button>
+      <input type="date" id="datePicker" onchange="selecionarData(this.value)" style="background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:6px 10px;border-radius:6px;font-family:'DM Sans',sans-serif;cursor:pointer;outline:none;">
+    </div>
+
+    <div class="agenda-grid" id="agendaGrid"></div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section id="sec-dashboard" class="section">
+    <div class="page-title">Dashboard</div>
+    <div class="page-sub">Acompanhe os resultados do time</div>
+
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-label">Total Agendado</div>
+        <div class="metric-value accent" id="metTotal">0</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Realizadas</div>
+        <div class="metric-value green" id="metRealizadas">0</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">No-Show</div>
+        <div class="metric-value red" id="metNoShow">0</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Taxa de Realização</div>
+        <div class="metric-value" id="metTaxa">—</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Filtrar por Closer</div>
+      <div class="closer-filters">
+        <button class="closer-filter-btn active" onclick="filtrarCloser('todos', this)">Todos</button>
+        <button class="closer-filter-btn" onclick="filtrarCloser('Guilherme', this)">Guilherme</button>
+        <button class="closer-filter-btn" onclick="filtrarCloser('Cinara', this)">Cinara</button>
+        <button class="closer-filter-btn" onclick="filtrarCloser('Emmanuel', this)">Emmanuel</button>
+        <button class="closer-filter-btn" onclick="filtrarCloser('Erina', this)">Erina</button>
+        <button class="closer-filter-btn" onclick="filtrarCloser('Andreia', this)">Andreia</button>
+        <button class="closer-filter-btn" onclick="filtrarCloser('Mariana', this)">Mariana</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Todos os Agendamentos</div>
+      <div class="table-wrap">
+        <table id="tabelaAgendamentos">
+          <thead>
+            <tr>
+              <th>Lead</th>
+              <th>Telefone</th>
+              <th>Closer</th>
+              <th>SDR</th>
+              <th>Data</th>
+              <th>Horário</th>
+              <th>Modalidade</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="tabelaBody">
+            <tr><td colspan="9"><div class="empty"><div class="empty-icon">📋</div>Nenhum agendamento ainda</div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- MODAL CONFIRMAÇÃO -->
+<div class="modal-overlay" id="modalConfirm">
+  <div class="modal">
+    <div class="modal-title">Confirmar Agendamento</div>
+    <div id="modalBody" style="color:var(--text2);font-size:13px;line-height:1.8;"></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="fecharModal()">Cancelar</button>
+      <button class="btn btn-primary" onclick="salvarAgendamento()">✓ Confirmar</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast">✓ Agendamento confirmado!</div>
+
+<script>
+  // CONFIG — ID da planilha Google Sheets
+  const SHEET_ID = '1BRU6jCaxRF9BAnJvdtV_P7SIs0S8sxW4sVsT1nJBMgk';
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby4xf7VsIPpp6kDknsAOZecwaPLxDAmwzZysLl9rBOPvOtTzgMXpUUO-NzfBlnwFjhq/exec';
+
+  // STATE
+  let agendamentos = JSON.parse(localStorage.getItem('lpd3_agendamentos') || '[]');
+  let filtroCloser = 'todos';
+  let dataAtual = new Date();
+  dataAtual.setHours(0,0,0,0);
+
+  const HORARIOS = ['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30',
+    '13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00'];
+  const CLOSERS = ['Guilherme','Cinara','Emmanuel','Erina','Andreia','Mariana'];
+
+  function salvarStorage() {
+    localStorage.setItem('lpd3_agendamentos', JSON.stringify(agendamentos));
+  }
+
+  // GOOGLE SHEETS — grava uma linha nova na planilha
+  async function gravarNaPlanilha(ag) {
+    if (!APPS_SCRIPT_URL) return;
+    try {
+      const linha = [ag.id, ag.nome, ag.tel, ag.closer, ag.sdr||'', ag.data, ag.horario, ag.modalidade, ag.status, ag.obs||''];
+      await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ acao: 'inserir', linha })
+      });
+    } catch(e) { console.warn('Erro planilha:', e); }
+  }
+
+  // NAVIGATION
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById('sec-' + id).classList.add('active');
+    event.target.classList.add('active');
+    if (id === 'dashboard') atualizarDashboard();
+    if (id === 'agenda') renderAgenda();
+  }
+
+  // CONFLICT CHECK
+  function verificarConflito() {
+    const closer = document.getElementById('reuniaoCloser').value;
+    const data = document.getElementById('reuniaoData').value;
+    const horario = document.getElementById('reuniaoHorario').value;
+    const warn = document.getElementById('conflictWarning');
+
+    if (!closer || !data || !horario) { warn.style.display = 'none'; return; }
+
+    const conflito = agendamentos.find(a =>
+      a.closer === closer && a.data === data && a.horario === horario && a.status !== 'cancelada'
+    );
+
+    warn.style.display = conflito ? 'block' : 'none';
+  }
+
+  // FORM
+  function confirmarAgendamento() {
+    const nome = document.getElementById('leadNome').value.trim();
+    const tel = document.getElementById('leadTel').value.trim();
+    const closer = document.getElementById('reuniaoCloser').value;
+    const data = document.getElementById('reuniaoData').value;
+    const horario = document.getElementById('reuniaoHorario').value;
+
+    if (!nome || !tel || !closer || !data || !horario) {
+      alert('Preencha os campos obrigatórios: Nome, Telefone, Closer, Data e Horário.');
+      return;
+    }
+
+    const dataFormatada = new Date(data + 'T12:00:00').toLocaleDateString('pt-BR');
+
+    document.getElementById('modalBody').innerHTML = `
+      <strong style="color:var(--text);display:block;margin-bottom:12px;">Verifique os dados antes de confirmar:</strong>
+      <div style="display:grid;gap:6px;">
+        <div>👤 <strong>Lead:</strong> ${nome}</div>
+        <div>📱 <strong>Telefone:</strong> ${tel}</div>
+        <div>👔 <strong>Closer:</strong> ${closer}</div>
+        <div>📅 <strong>Data:</strong> ${dataFormatada}</div>
+        <div>🕐 <strong>Horário:</strong> ${horario}</div>
+        <div>🖥️ <strong>Modalidade:</strong> ${document.getElementById('reuniaoModalidade').value}</div>
+      </div>
+    `;
+
+    document.getElementById('modalConfirm').classList.add('open');
+  }
+
+  function fecharModal() {
+    document.getElementById('modalConfirm').classList.remove('open');
+  }
+
+  function salvarAgendamento() {
+    const ag = {
+      id: Date.now(),
+      nome: document.getElementById('leadNome').value.trim(),
+      tel: document.getElementById('leadTel').value.trim(),
+      email: document.getElementById('leadEmail').value.trim(),
+      origem: document.getElementById('leadOrigem').value,
+      obs: document.getElementById('leadObs').value.trim(),
+      closer: document.getElementById('reuniaoCloser').value,
+      data: document.getElementById('reuniaoData').value,
+      horario: document.getElementById('reuniaoHorario').value,
+      sdr: document.getElementById('reuniaoSDR').value,
+      modalidade: document.getElementById('reuniaoModalidade').value,
+      status: 'agendada'
+    };
+
+    agendamentos.push(ag);
+    salvarStorage();
+    gravarNaPlanilha(ag);
+    fecharModal();
+    limparFormulario();
+    mostrarToast('✓ Agendamento confirmado!');
+    atualizarDashboard();
+  }
+
+  function limparFormulario() {
+    ['leadNome','leadTel','leadEmail','leadObs','reuniaoData'].forEach(id => document.getElementById(id).value = '');
+    ['leadOrigem','reuniaoCloser','reuniaoHorario','reuniaoSDR'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('reuniaoModalidade').value = 'Videochamada';
+    document.getElementById('conflictWarning').style.display = 'none';
+  }
+
+  // TOAST
+  function mostrarToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }
+
+  // DASHBOARD
+  function atualizarDashboard() {
+    const filtrados = filtroCloser === 'todos' ? agendamentos : agendamentos.filter(a => a.closer === filtroCloser);
+
+    const total = filtrados.length;
+    const realizadas = filtrados.filter(a => a.status === 'realizada').length;
+    const noshow = filtrados.filter(a => a.status === 'noshow').length;
+    const taxa = realizadas > 0 ? Math.round((realizadas / (realizadas + noshow)) * 100) + '%' : '—';
+
+    document.getElementById('metTotal').textContent = total;
+    document.getElementById('metRealizadas').textContent = realizadas;
+    document.getElementById('metNoShow').textContent = noshow;
+    document.getElementById('metTaxa').textContent = taxa;
+
+    const tbody = document.getElementById('tabelaBody');
+    if (filtrados.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="9"><div class="empty"><div class="empty-icon">📋</div>Nenhum agendamento encontrado</div></td></tr>`;
+      return;
+    }
+
+    const sorted = [...filtrados].sort((a, b) => {
+      if (a.data !== b.data) return a.data > b.data ? -1 : 1;
+      return a.horario > b.horario ? -1 : 1;
+    });
+
+    tbody.innerHTML = sorted.map(a => {
+      const dataFmt = new Date(a.data + 'T12:00:00').toLocaleDateString('pt-BR');
+      const badgeClass = { agendada: 'badge-agendada', realizada: 'badge-realizada', noshow: 'badge-noshow', cancelada: 'badge-cancelada' }[a.status] || 'badge-agendada';
+      const statusLabel = { agendada: 'Agendada', realizada: 'Realizada', noshow: 'No-Show', cancelada: 'Cancelada' }[a.status] || a.status;
+
+      return `<tr>
+        <td><strong>${a.nome}</strong></td>
+        <td>${a.tel}</td>
+        <td>${a.closer}</td>
+        <td>${a.sdr || '—'}</td>
+        <td>${dataFmt}</td>
+        <td>${a.horario}</td>
+        <td>${a.modalidade}</td>
+        <td><span class="badge ${badgeClass}">${statusLabel}</span></td>
+        <td>
+          <select class="status-select" onchange="atualizarStatus(${a.id}, this.value)">
+            <option value="agendada" ${a.status==='agendada'?'selected':''}>Agendada</option>
+            <option value="realizada" ${a.status==='realizada'?'selected':''}>Realizada</option>
+            <option value="noshow" ${a.status==='noshow'?'selected':''}>No-Show</option>
+            <option value="cancelada" ${a.status==='cancelada'?'selected':''}>Cancelada</option>
+          </select>
+        </td>
+      </tr>`;
+    }).join('');
+  }
+
+  function atualizarStatus(id, novoStatus) {
+    const ag = agendamentos.find(a => a.id === id);
+    if (ag) {
+      ag.status = novoStatus;
+      salvarStorage();
+      atualizarDashboard();
+      mostrarToast('Status atualizado!');
+    }
+  }
+
+  function filtrarCloser(closer, btn) {
+    filtroCloser = closer;
+    document.querySelectorAll('.closer-filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    atualizarDashboard();
+  }
+
+  // AGENDA VISUAL
+  function formatarDataDisplay(d) {
+    const dias = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
+    const meses = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+    return `${dias[d.getDay()]}, ${d.getDate()} de ${meses[d.getMonth()]}`;
+  }
+
+  function renderAgenda() {
+    const dateStr = dataAtual.toISOString().split('T')[0];
+    document.getElementById('dataDisplay').textContent = formatarDataDisplay(dataAtual);
+    document.getElementById('datePicker').value = dateStr;
+
+    const grid = document.getElementById('agendaGrid');
+    grid.innerHTML = CLOSERS.map(closer => {
+      const agsDia = agendamentos.filter(a => a.closer === closer && a.data === dateStr && a.status !== 'cancelada');
+      const ocupados = agsDia.map(a => a.horario);
+
+      const slots = HORARIOS.map(h => {
+        const ocupado = ocupados.includes(h);
+        const ag = agsDia.find(a => a.horario === h);
+        return `<div class="agenda-slot ${ocupado ? 'slot-busy' : 'slot-free'}">
+          <div class="slot-dot"></div>
+          <div>
+            <div>${h}</div>
+            ${ocupado ? `<div class="slot-name">${ag.nome}</div>` : ''}
+          </div>
+        </div>`;
+      }).join('');
+
+      return `<div class="agenda-closer-col">
+        <div class="agenda-closer-header">${closer}</div>
+        ${slots}
+      </div>`;
+    }).join('');
+  }
+
+  function mudarDia(delta) {
+    dataAtual.setDate(dataAtual.getDate() + delta);
+    renderAgenda();
+  }
+
+  function selecionarData(val) {
+    if (val) {
+      dataAtual = new Date(val + 'T12:00:00');
+      renderAgenda();
+    }
+  }
+
+  // INIT
+  renderAgenda();
+  atualizarDashboard();
+
+  // Set today as default date for form
+  document.getElementById('reuniaoData').value = new Date().toISOString().split('T')[0];
+</script>
+</body>
+</html>
