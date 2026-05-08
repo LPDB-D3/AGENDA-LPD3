@@ -685,7 +685,7 @@
   async function gravarNaPlanilha(ag) {
     if (!APPS_SCRIPT_URL) return;
     try {
-      const linha = [ag.id, ag.nome, ag.tel, ag.closer, ag.sdr||'', ag.data, ag.horario, ag.modalidade, ag.status, ag.obs||''];
+      const linha = [ag.id, ag.nome, ag.tel, ag.closer, ag.sdr||'', dataHoraISO, ag.horario, ag.modalidade, ag.status, ag.obs||''];
       await fetch(APPS_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
@@ -770,6 +770,9 @@
       modalidade: document.getElementById('reuniaoModalidade').value,
       status: 'agendada'
     };
+
+    // Monta datetime ISO para a planilha
+    const dataHoraISO = ag.data + 'T' + ag.horario + ':00';
 
     agendamentos.push(ag);
     salvarStorage();
