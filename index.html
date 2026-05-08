@@ -665,7 +665,7 @@
 <script>
   // CONFIG — ID da planilha Google Sheets
   const SHEET_ID = '1BRU6jCaxRF9BAnJvdtV_P7SIs0S8sxW4sVsT1nJBMgk';
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby4xf7VsIPpp6kDknsAOZecwaPLxDAmwzZysLl9rBOPvOtTzgMXpUUO-NzfBlnwFjhq/exec';
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz1NcxrWOKVvHPDeYK_AUiYUjJwnh4ygM4FxwV65A1r7OxYCXvZuW9DJq3e_CgBXX7U/exec';
 
   // STATE
   let agendamentos = JSON.parse(localStorage.getItem('lpd3_agendamentos') || '[]');
@@ -685,11 +685,11 @@
   async function gravarNaPlanilha(ag) {
     if (!APPS_SCRIPT_URL) return;
     try {
+      const dataHoraISO = ag.data + 'T' + ag.horario + ':00';
       const linha = [ag.id, ag.nome, ag.tel, ag.closer, ag.sdr||'', dataHoraISO, ag.horario, ag.modalidade, ag.status, ag.obs||''];
       await fetch(APPS_SCRIPT_URL, {
         method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify({ acao: 'inserir', linha })
       });
     } catch(e) { console.warn('Erro planilha:', e); }
