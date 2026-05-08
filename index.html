@@ -32,7 +32,6 @@
     min-height: 100vh;
   }
 
-  /* HEADER */
   header {
     background: var(--surface);
     border-bottom: 1px solid var(--border);
@@ -73,14 +72,11 @@
   nav button:hover { background: var(--surface2); color: var(--text); }
   nav button.active { background: var(--surface2); color: var(--accent); }
 
-  /* MAIN */
   main { padding: 32px; max-width: 1200px; margin: 0 auto; }
 
-  /* SECTIONS */
   .section { display: none; }
   .section.active { display: block; }
 
-  /* PAGE TITLES */
   .page-title {
     font-family: 'DM Serif Display', serif;
     font-size: 28px;
@@ -89,7 +85,6 @@
   }
   .page-sub { color: var(--text2); font-size: 13px; margin-bottom: 28px; }
 
-  /* CARDS */
   .card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -107,7 +102,6 @@
     margin-bottom: 18px;
   }
 
-  /* FORM */
   .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .form-grid.three { grid-template-columns: 1fr 1fr 1fr; }
   .form-full { grid-column: 1 / -1; }
@@ -134,15 +128,10 @@
     width: 100%;
   }
 
-  input:focus, select:focus, textarea:focus {
-    border-color: var(--accent);
-  }
-
+  input:focus, select:focus, textarea:focus { border-color: var(--accent); }
   select option { background: var(--surface2); }
-
   textarea { resize: vertical; min-height: 80px; }
 
-  /* BUTTONS */
   .btn {
     display: inline-flex;
     align-items: center;
@@ -157,27 +146,11 @@
     transition: all 0.15s;
   }
 
-  .btn-primary {
-    background: var(--accent);
-    color: #0f0f0f;
-  }
+  .btn-primary { background: var(--accent); color: #0f0f0f; }
   .btn-primary:hover { background: var(--accent2); }
-
-  .btn-ghost {
-    background: var(--surface2);
-    color: var(--text2);
-    border: 1px solid var(--border);
-  }
+  .btn-ghost { background: var(--surface2); color: var(--text2); border: 1px solid var(--border); }
   .btn-ghost:hover { color: var(--text); border-color: var(--text3); }
 
-  .btn-danger {
-    background: transparent;
-    color: var(--red);
-    border: 1px solid var(--red);
-  }
-  .btn-danger:hover { background: var(--red); color: white; }
-
-  /* CONFLICT WARNING */
   #conflictWarning {
     display: none;
     background: rgba(224, 82, 82, 0.1);
@@ -189,7 +162,6 @@
     margin-top: 8px;
   }
 
-  /* DASHBOARD METRICS */
   .metrics-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -224,13 +196,9 @@
   .metric-value.green { color: var(--green); }
   .metric-value.red { color: var(--red); }
 
-  /* TABLE */
   .table-wrap { overflow-x: auto; }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
+  table { width: 100%; border-collapse: collapse; }
 
   th {
     font-size: 11px;
@@ -254,7 +222,6 @@
   tr:last-child td { border-bottom: none; }
   tr:hover td { background: var(--surface2); }
 
-  /* BADGE */
   .badge {
     display: inline-block;
     padding: 3px 10px;
@@ -269,13 +236,7 @@
   .badge-noshow { background: rgba(224, 82, 82, 0.15); color: var(--red); }
   .badge-cancelada { background: rgba(90, 87, 83, 0.3); color: var(--text3); }
 
-  /* CLOSER FILTER */
-  .closer-filters {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-  }
+  .closer-filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
 
   .closer-filter-btn {
     padding: 6px 14px;
@@ -293,12 +254,7 @@
   .closer-filter-btn:hover { border-color: var(--accent); color: var(--accent); }
   .closer-filter-btn.active { background: var(--accent); color: #0f0f0f; border-color: var(--accent); }
 
-  /* AGENDA VISUAL */
-  .agenda-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 12px;
-  }
+  .agenda-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
 
   .agenda-closer-col {
     background: var(--surface);
@@ -324,32 +280,18 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    cursor: default;
   }
 
   .agenda-slot:last-child { border-bottom: none; }
 
-  .slot-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
+  .slot-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
   .slot-free .slot-dot { background: var(--green); }
   .slot-busy .slot-dot { background: var(--red); }
   .slot-free { color: var(--text2); }
   .slot-busy { color: var(--text3); }
-
   .slot-name { font-size: 10px; color: var(--text3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-  /* DATE SELECTOR */
-  .date-nav {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
+  .date-nav { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
 
   .date-nav button {
     background: var(--surface2);
@@ -368,13 +310,8 @@
 
   .date-nav button:hover { border-color: var(--accent); color: var(--accent); }
 
-  .date-display {
-    font-family: 'DM Serif Display', serif;
-    font-size: 18px;
-    color: var(--text);
-  }
+  .date-display { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--text); }
 
-  /* STATUS SELECT */
   .status-select {
     background: var(--surface2);
     border: 1px solid var(--border);
@@ -386,7 +323,6 @@
     cursor: pointer;
   }
 
-  /* TOAST */
   #toast {
     position: fixed;
     bottom: 24px;
@@ -406,16 +342,9 @@
 
   #toast.show { opacity: 1; transform: translateY(0); }
 
-  /* EMPTY STATE */
-  .empty {
-    text-align: center;
-    padding: 48px;
-    color: var(--text3);
-  }
-
+  .empty { text-align: center; padding: 48px; color: var(--text3); }
   .empty-icon { font-size: 32px; margin-bottom: 12px; }
 
-  /* MODAL */
   .modal-overlay {
     display: none;
     position: fixed;
@@ -437,16 +366,8 @@
     max-width: 95vw;
   }
 
-  .modal-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 20px;
-    margin-bottom: 18px;
-  }
-
+  .modal-title { font-family: 'DM Serif Display', serif; font-size: 20px; margin-bottom: 18px; }
   .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
-
-  hr.divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
-
   .form-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
 </style>
 </head>
@@ -455,9 +376,9 @@
 <header>
   <div class="logo">LPD3 <span>Sistema de Agendamento</span></div>
   <nav>
-    <button class="active" onclick="showSection('agendar')">Novo Agendamento</button>
-    <button onclick="showSection('agenda')">Agenda Visual</button>
-    <button onclick="showSection('dashboard')">Dashboard</button>
+    <button class="active" onclick="showSection('agendar', this)">Novo Agendamento</button>
+    <button onclick="showSection('agenda', this)">Agenda Visual</button>
+    <button onclick="showSection('dashboard', this)">Dashboard</button>
   </nav>
 </header>
 
@@ -480,7 +401,7 @@
           <input type="text" id="leadTel" placeholder="(51) 99999-9999">
         </div>
         <div class="field">
-          <label>E-mail</label>
+          <label>E-mail do Lead</label>
           <input type="email" id="leadEmail" placeholder="email@exemplo.com">
         </div>
         <div class="field">
@@ -629,6 +550,7 @@
             <tr>
               <th>Lead</th>
               <th>Telefone</th>
+              <th>E-mail</th>
               <th>Closer</th>
               <th>SDR</th>
               <th>Data</th>
@@ -639,7 +561,7 @@
             </tr>
           </thead>
           <tbody id="tabelaBody">
-            <tr><td colspan="9"><div class="empty"><div class="empty-icon">📋</div>Nenhum agendamento ainda</div></td></tr>
+            <tr><td colspan="10"><div class="empty"><div class="empty-icon">📋</div>Nenhum agendamento ainda</div></td></tr>
           </tbody>
         </table>
       </div>
@@ -663,54 +585,86 @@
 <div id="toast">✓ Agendamento confirmado!</div>
 
 <script>
-  // CONFIG — ID da planilha Google Sheets
-  const SHEET_ID = '1BRU6jCaxRF9BAnJvdtV_P7SIs0S8sxW4sVsT1nJBMgk';
+  // ============================================================
+  // CONFIG
+  // ============================================================
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz1NcxrWOKVvHPDeYK_AUiYUjJwnh4ygM4FxwV65A1r7OxYCXvZuW9DJq3e_CgBXX7U/exec';
 
+  // ============================================================
   // STATE
+  // ============================================================
   let agendamentos = JSON.parse(localStorage.getItem('lpd3_agendamentos') || '[]');
   let filtroCloser = 'todos';
   let dataAtual = new Date();
-  dataAtual.setHours(0,0,0,0);
+  dataAtual.setHours(0, 0, 0, 0);
 
-  const HORARIOS = ['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30',
-    '13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00'];
+  const HORARIOS = [
+    '08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30',
+    '12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30',
+    '16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00'
+  ];
+
   const CLOSERS = ['Guilherme','Cinara','Emmanuel','Erina','Andreia','Mariana'];
 
   function salvarStorage() {
     localStorage.setItem('lpd3_agendamentos', JSON.stringify(agendamentos));
   }
 
-  // GOOGLE SHEETS — grava uma linha nova na planilha
+  // ============================================================
+  // GRAVAR NA PLANILHA — envia todos os campos incluindo e-mail
+  // ============================================================
   async function gravarNaPlanilha(ag) {
-    if (!APPS_SCRIPT_URL) return;
     try {
       const dataHoraISO = ag.data + 'T' + ag.horario + ':00';
-      const linha = [ag.id, ag.nome, ag.tel, ag.closer, ag.sdr||'', dataHoraISO, ag.horario, ag.modalidade, ag.status, ag.obs||''];
+
+      // ORDEM DAS COLUNAS NA PLANILHA:
+      // A=ID | B=Nome | C=Telefone | D=Email | E=Closer | F=SDR | G=DataHoraISO | H=Horario | I=Modalidade | J=Status | K=Origem | L=Obs
+      const linha = [
+        ag.id,
+        ag.nome,
+        ag.tel,
+        ag.email    || '',   // <-- E-MAIL DO LEAD (coluna D)
+        ag.closer,
+        ag.sdr      || '',
+        dataHoraISO,
+        ag.horario,
+        ag.modalidade,
+        ag.status,
+        ag.origem   || '',   // <-- ORIGEM DO LEAD (coluna K)
+        ag.obs      || ''
+      ];
+
       await fetch(APPS_SCRIPT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify({ acao: 'inserir', linha })
       });
-    } catch(e) { console.warn('Erro planilha:', e); }
+
+    } catch (e) {
+      console.warn('Erro ao gravar na planilha:', e);
+    }
   }
 
-  // NAVIGATION
-  function showSection(id) {
+  // ============================================================
+  // NAVEGAÇÃO
+  // ============================================================
+  function showSection(id, btn) {
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
     document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
     document.getElementById('sec-' + id).classList.add('active');
-    event.target.classList.add('active');
+    if (btn) btn.classList.add('active');
     if (id === 'dashboard') atualizarDashboard();
     if (id === 'agenda') renderAgenda();
   }
 
-  // CONFLICT CHECK
+  // ============================================================
+  // VERIFICAR CONFLITO DE HORÁRIO
+  // ============================================================
   function verificarConflito() {
-    const closer = document.getElementById('reuniaoCloser').value;
-    const data = document.getElementById('reuniaoData').value;
+    const closer  = document.getElementById('reuniaoCloser').value;
+    const data    = document.getElementById('reuniaoData').value;
     const horario = document.getElementById('reuniaoHorario').value;
-    const warn = document.getElementById('conflictWarning');
+    const warn    = document.getElementById('conflictWarning');
 
     if (!closer || !data || !horario) { warn.style.display = 'none'; return; }
 
@@ -721,12 +675,15 @@
     warn.style.display = conflito ? 'block' : 'none';
   }
 
-  // FORM
+  // ============================================================
+  // CONFIRMAR (abre modal de revisão)
+  // ============================================================
   function confirmarAgendamento() {
-    const nome = document.getElementById('leadNome').value.trim();
-    const tel = document.getElementById('leadTel').value.trim();
-    const closer = document.getElementById('reuniaoCloser').value;
-    const data = document.getElementById('reuniaoData').value;
+    const nome    = document.getElementById('leadNome').value.trim();
+    const tel     = document.getElementById('leadTel').value.trim();
+    const email   = document.getElementById('leadEmail').value.trim();
+    const closer  = document.getElementById('reuniaoCloser').value;
+    const data    = document.getElementById('reuniaoData').value;
     const horario = document.getElementById('reuniaoHorario').value;
 
     if (!nome || !tel || !closer || !data || !horario) {
@@ -741,6 +698,7 @@
       <div style="display:grid;gap:6px;">
         <div>👤 <strong>Lead:</strong> ${nome}</div>
         <div>📱 <strong>Telefone:</strong> ${tel}</div>
+        <div>📧 <strong>E-mail:</strong> ${email || '—'}</div>
         <div>👔 <strong>Closer:</strong> ${closer}</div>
         <div>📅 <strong>Data:</strong> ${dataFormatada}</div>
         <div>🕐 <strong>Horário:</strong> ${horario}</div>
@@ -755,42 +713,52 @@
     document.getElementById('modalConfirm').classList.remove('open');
   }
 
+  // ============================================================
+  // SALVAR AGENDAMENTO (após confirmar no modal)
+  // ============================================================
   function salvarAgendamento() {
     const ag = {
-      id: Date.now(),
-      nome: document.getElementById('leadNome').value.trim(),
-      tel: document.getElementById('leadTel').value.trim(),
-      email: document.getElementById('leadEmail').value.trim(),
-      origem: document.getElementById('leadOrigem').value,
-      obs: document.getElementById('leadObs').value.trim(),
-      closer: document.getElementById('reuniaoCloser').value,
-      data: document.getElementById('reuniaoData').value,
-      horario: document.getElementById('reuniaoHorario').value,
-      sdr: document.getElementById('reuniaoSDR').value,
+      id        : Date.now(),
+      nome      : document.getElementById('leadNome').value.trim(),
+      tel       : document.getElementById('leadTel').value.trim(),
+      email     : document.getElementById('leadEmail').value.trim(),   // <-- captura e-mail
+      origem    : document.getElementById('leadOrigem').value,
+      obs       : document.getElementById('leadObs').value.trim(),
+      closer    : document.getElementById('reuniaoCloser').value,
+      data      : document.getElementById('reuniaoData').value,
+      horario   : document.getElementById('reuniaoHorario').value,
+      sdr       : document.getElementById('reuniaoSDR').value,
       modalidade: document.getElementById('reuniaoModalidade').value,
-      status: 'agendada'
+      status    : 'agendada'
     };
-
-    // Monta datetime ISO para a planilha
-    const dataHoraISO = ag.data + 'T' + ag.horario + ':00';
 
     agendamentos.push(ag);
     salvarStorage();
-    gravarNaPlanilha(ag);
+    gravarNaPlanilha(ag);   // envia para a planilha com e-mail incluído
     fecharModal();
     limparFormulario();
     mostrarToast('✓ Agendamento confirmado!');
     atualizarDashboard();
   }
 
+  // ============================================================
+  // LIMPAR FORMULÁRIO
+  // ============================================================
   function limparFormulario() {
-    ['leadNome','leadTel','leadEmail','leadObs','reuniaoData'].forEach(id => document.getElementById(id).value = '');
-    ['leadOrigem','reuniaoCloser','reuniaoHorario','reuniaoSDR'].forEach(id => document.getElementById(id).value = '');
+    ['leadNome','leadTel','leadEmail','leadObs','reuniaoData'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+    ['leadOrigem','reuniaoCloser','reuniaoHorario','reuniaoSDR'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
     document.getElementById('reuniaoModalidade').value = 'Videochamada';
     document.getElementById('conflictWarning').style.display = 'none';
+    document.getElementById('reuniaoData').value = new Date().toISOString().split('T')[0];
   }
 
+  // ============================================================
   // TOAST
+  // ============================================================
   function mostrarToast(msg) {
     const t = document.getElementById('toast');
     t.textContent = msg;
@@ -798,23 +766,28 @@
     setTimeout(() => t.classList.remove('show'), 3000);
   }
 
+  // ============================================================
   // DASHBOARD
+  // ============================================================
   function atualizarDashboard() {
-    const filtrados = filtroCloser === 'todos' ? agendamentos : agendamentos.filter(a => a.closer === filtroCloser);
+    const filtrados = filtroCloser === 'todos'
+      ? agendamentos
+      : agendamentos.filter(a => a.closer === filtroCloser);
 
-    const total = filtrados.length;
+    const total      = filtrados.length;
     const realizadas = filtrados.filter(a => a.status === 'realizada').length;
-    const noshow = filtrados.filter(a => a.status === 'noshow').length;
-    const taxa = realizadas > 0 ? Math.round((realizadas / (realizadas + noshow)) * 100) + '%' : '—';
+    const noshow     = filtrados.filter(a => a.status === 'noshow').length;
+    const taxa       = realizadas > 0 ? Math.round((realizadas / (realizadas + noshow)) * 100) + '%' : '—';
 
-    document.getElementById('metTotal').textContent = total;
+    document.getElementById('metTotal').textContent     = total;
     document.getElementById('metRealizadas').textContent = realizadas;
-    document.getElementById('metNoShow').textContent = noshow;
-    document.getElementById('metTaxa').textContent = taxa;
+    document.getElementById('metNoShow').textContent     = noshow;
+    document.getElementById('metTaxa').textContent       = taxa;
 
     const tbody = document.getElementById('tabelaBody');
+
     if (filtrados.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="9"><div class="empty"><div class="empty-icon">📋</div>Nenhum agendamento encontrado</div></td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="10"><div class="empty"><div class="empty-icon">📋</div>Nenhum agendamento encontrado</div></td></tr>`;
       return;
     }
 
@@ -824,13 +797,14 @@
     });
 
     tbody.innerHTML = sorted.map(a => {
-      const dataFmt = new Date(a.data + 'T12:00:00').toLocaleDateString('pt-BR');
+      const dataFmt    = new Date(a.data + 'T12:00:00').toLocaleDateString('pt-BR');
       const badgeClass = { agendada: 'badge-agendada', realizada: 'badge-realizada', noshow: 'badge-noshow', cancelada: 'badge-cancelada' }[a.status] || 'badge-agendada';
       const statusLabel = { agendada: 'Agendada', realizada: 'Realizada', noshow: 'No-Show', cancelada: 'Cancelada' }[a.status] || a.status;
 
       return `<tr>
         <td><strong>${a.nome}</strong></td>
         <td>${a.tel}</td>
+        <td>${a.email || '—'}</td>
         <td>${a.closer}</td>
         <td>${a.sdr || '—'}</td>
         <td>${dataFmt}</td>
@@ -839,9 +813,9 @@
         <td><span class="badge ${badgeClass}">${statusLabel}</span></td>
         <td>
           <select class="status-select" onchange="atualizarStatus(${a.id}, this.value)">
-            <option value="agendada" ${a.status==='agendada'?'selected':''}>Agendada</option>
+            <option value="agendada"  ${a.status==='agendada' ?'selected':''}>Agendada</option>
             <option value="realizada" ${a.status==='realizada'?'selected':''}>Realizada</option>
-            <option value="noshow" ${a.status==='noshow'?'selected':''}>No-Show</option>
+            <option value="noshow"    ${a.status==='noshow'   ?'selected':''}>No-Show</option>
             <option value="cancelada" ${a.status==='cancelada'?'selected':''}>Cancelada</option>
           </select>
         </td>
@@ -866,10 +840,12 @@
     atualizarDashboard();
   }
 
+  // ============================================================
   // AGENDA VISUAL
+  // ============================================================
   function formatarDataDisplay(d) {
-    const dias = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
-    const meses = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+    const dias   = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
+    const meses  = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
     return `${dias[d.getDay()]}, ${d.getDate()} de ${meses[d.getMonth()]}`;
   }
 
@@ -880,7 +856,7 @@
 
     const grid = document.getElementById('agendaGrid');
     grid.innerHTML = CLOSERS.map(closer => {
-      const agsDia = agendamentos.filter(a => a.closer === closer && a.data === dateStr && a.status !== 'cancelada');
+      const agsDia  = agendamentos.filter(a => a.closer === closer && a.data === dateStr && a.status !== 'cancelada');
       const ocupados = agsDia.map(a => a.horario);
 
       const slots = HORARIOS.map(h => {
@@ -914,11 +890,11 @@
     }
   }
 
+  // ============================================================
   // INIT
+  // ============================================================
   renderAgenda();
   atualizarDashboard();
-
-  // Set today as default date for form
   document.getElementById('reuniaoData').value = new Date().toISOString().split('T')[0];
 </script>
 </body>
